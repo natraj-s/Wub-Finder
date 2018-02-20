@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed|Roboto');
+
+body, html, .container {
+    background: #d4cbc3;
+    color: white;
+    height: 100%;
+    -webkit-text-size-adjust: auto;
+    -moz-text-size-adjust: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: rgb(255, 202, 122);
+}
+
+a:hover {
+    color:rgb(229, 201, 157);
+}
+
+.container.mainContent {
+    background: url("../images/bg.png");
+    border: 1px solid rgb(255, 202, 122);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 1px 0px rgb(163, 162, 162), 
+                0px 2px 0px #888, 
+                0px 3px 0px #777,
+                0px 3px 0px #777, 
+                0px 2px 0px #888, 
+                0px 5px 8px rgb(163, 162, 162);
+}
+
+hr {
+    border-top: 1px solid rgb(255, 202, 122);
+}
+
+h1{
+    text-transform: uppercase;
+    text-shadow: 0px 1px 0px rgb(163, 162, 162), 
+                0px 2px 0px #888, 
+                0px 3px 0px #777,                
+                0px 6px 0px #444, 
+                0px 7px 0px #333, 
+                0px 8px 7px #001135;
+    -webkit-text-size-adjust: auto;
+    -moz-text-size-adjust: auto;
+}
+
+.title-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 78px;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+    -webkit-text-size-adjust: auto;
+}
+
+.survey {
+    text-align: justify;
+    font-size: 15px;
+    text-shadow: 1px 1px 4px #888;
+}
+
+.footer {
+    text-align: center;
+    text-shadow: 1px 1px 4px #888;
+}
