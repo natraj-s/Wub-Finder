@@ -1,0 +1,28 @@
+{
+  "name": "wubfinder",
+  "version": "1.0.0",
+  "description": "Find your wubs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natraj-s/Wub-Finder.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "javascript"
+  ],
+  "author": "Natraj Subramanian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natraj-s/Wub-Finder/issues"
+  },
+  "homepage": "https://github.com/natraj-s/Wub-Finder#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
