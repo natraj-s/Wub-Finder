@@ -1,3 +1,7 @@
+var artistImageURL = "";
+var artistBio = "";
+var spotifyLink = "";
+
 $(document).ready(function () {
 
     var globalQCounter = 0;
@@ -74,7 +78,6 @@ $(document).ready(function () {
         userScores.push($(this).val());
 
         if(globalQCounter < questions.length) {
-
             $(".question").toggleClass("disappear");
             $(".options").toggleClass("disappear");
             globalQCounter++;
@@ -86,19 +89,17 @@ $(document).ready(function () {
                 $(".options").append(buttons[globalQCounter]);
                 $(".options").toggleClass("disappear");
             }, 500);
-            console.log("global ", globalQCounter);
 
             if(globalQCounter === questions.length) {
                 $(".question").text("You've reached the end of the quiz");
-                console.log("userScores: " + userScores);
                 var scoreJSON = {
                     userScore: userScores
                 }
 
-                console.log("scoreJSON: ", scoreJSON);
-
                 $.post("/data/artists", scoreJSON).then(function(data) {
                     $(".question").text("You should listen to " + data.name);
+                    spotifyLink = data.link;
+                    getArtistData(data.name);
                 });
             }
         }
@@ -107,3 +108,47 @@ $(document).ready(function () {
         }
     });
 });
+
+function showModal(artist) {
+    var overlayDiv = $("<div class='overlay' aria-hidden='false'>");
+    var showArtistDiv = $("<div class='showartistdiv'>");
+    $(".survey").addClass("below");
+    showArtistDiv.addClass("above");
+    var row = $("<p class='artisttitle'>");
+    var artistLabel = $("<label class='artistlabel'>");
+    artistLabel.append(artist);
+    row.append("YOU SHOULD LISTEN TO ");
+    row.append(artistLabel);
+    row.append("<hr>");
+    var row2 = $("<p class='artistimage'>");
+    row2.append("<img src='" + artistImageURL + "' alt='" + artist + "' title='" + artist + "'/>");
+    var row3 = $("<p class='artistbio'>");
+    row3.append(artistBio);
+    var row4 = $("<p class='spotifylink'>");
+    row4.append("<a href='" + spotifyLink + " target='blank'> Listen on Spotify </a>");
+    showArtistDiv.append(row);
+    showArtistDiv.append(row2);
+    showArtistDiv.append(row3);
+    showArtistDiv.append(row4);
+
+    $(".mainContent").append(overlayDiv);
+    overlayDiv.append(showArtistDiv);
+    overlayDiv.removeClass("hidden");
+    overlayDiv.addClass("opened");
+
+};
+
+function getArtistData(artist) {
+    var apiKey = "e9526b6f9b8347d91973bf1d26081834";
+    var queryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist +
+                    "&api_key=e9526b6f9b8347d91973bf1d26081834&format=json";
+    
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        artistImageURL = response.artist.image[2]["#text"];
+        artistBio = response.artist.bio.summary;
+        showModal(artist);
+    })
+}
