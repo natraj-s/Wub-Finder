@@ -125,7 +125,7 @@ function showModal(artist) {
     var row3 = $("<p class='artistbio'>");
     row3.append(artistBio);
     var row4 = $("<p class='spotifylink'>");
-    row4.append("<a href='" + spotifyLink + " target='blank'> Listen on Spotify </a>");
+    row4.append("<a href='" + spotifyLink + "' target='_blank'> Listen on Spotify </a>");
     showArtistDiv.append(row);
     showArtistDiv.append(row2);
     showArtistDiv.append(row3);
