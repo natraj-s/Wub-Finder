@@ -140,7 +140,7 @@ function showModal(artist) {
 
 function getArtistData(artist) {
     var apiKey = "e9526b6f9b8347d91973bf1d26081834";
-    var queryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist +
+    var queryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist +
                     "&api_key=e9526b6f9b8347d91973bf1d26081834&format=json";
     
     $.ajax({
