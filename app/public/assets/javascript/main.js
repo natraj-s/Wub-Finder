@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     var globalQCounter = 0;
+    var userScores = [];
 
     var fiveButtons =
         "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='1' aria-label=''>1</label>" +
@@ -21,11 +22,13 @@ $(document).ready(function () {
 
     var etButtons =
         "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='1' aria-label=''>Call me Richard Attenborough</label>" +
-        "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='2' aria-label=''>I spit acid</label>";
+        "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='2' aria-label=''>I spit acid</label>" + 
+        "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='3' aria-label=''>I like being alive</label>";
 
     var ageButtons =
         "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='1' aria-label=''>Old School</label>" +
-        "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='2' aria-label=''>Contemporary</label>";
+        "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='2' aria-label=''>Contemporary</label>" + 
+        "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='3' aria-label=''>Both</label>";
 
     var ambienceButtons =
         "<label class='radio-inline'><input type='radio' class='option' name='optradio' value='1' aria-label=''>My middle name is Bladerunner</label>" +
@@ -46,7 +49,8 @@ $(document).ready(function () {
         "Old School or Contemporary?",
         "Neon Future or Miami Vice 80s?",
         "Post Apocalyptic Future?",
-        "Pick the genre you listen to the most from the ones listed below."
+        "Pick the genre you listen to the most from the ones listed below.",
+        "How hard are you looking to dance?"
     ];
 
     var buttons = [
@@ -59,21 +63,22 @@ $(document).ready(function () {
         ageButtons,
         ambienceButtons,
         futureButtons,
-        genreButtons
+        genreButtons,
+        fiveButtons
     ];
 
     $(".question").text(questions[globalQCounter]);
     $(".options").append(buttons[globalQCounter]);
 
     $(".options").on("click", ".option", function() {
-        console.log("I came here");
-        if(globalQCounter < 10) {
-            console.log("entered");
+        userScores.push($(this).val());
+
+        if(globalQCounter < questions.length) {
 
             $(".question").toggleClass("disappear");
             $(".options").toggleClass("disappear");
             globalQCounter++;
-            console.log($(this).val());
+
             setTimeout(function () {
                 $(".question").text(questions[globalQCounter]);
                 $(".question").toggleClass("disappear");
@@ -83,8 +88,18 @@ $(document).ready(function () {
             }, 500);
             console.log("global ", globalQCounter);
 
-            if(globalQCounter === 10) {
+            if(globalQCounter === questions.length) {
                 $(".question").text("You've reached the end of the quiz");
+                console.log("userScores: " + userScores);
+                var scoreJSON = {
+                    userScore: userScores
+                }
+
+                console.log("scoreJSON: ", scoreJSON);
+
+                $.post("/data/artists", scoreJSON).then(function(data) {
+                    $(".question").text("You should listen to " + data.name);
+                });
             }
         }
         else {
