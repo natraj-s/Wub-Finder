@@ -77,7 +77,7 @@ $(document).ready(function () {
     $(".options").on("click", ".option", function() {
         userScores.push($(this).val());
 
-        if(globalQCounter < questions.length) {
+        if(globalQCounter < 2) {
             $(".question").toggleClass("disappear");
             $(".options").toggleClass("disappear");
             globalQCounter++;
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 $(".options").toggleClass("disappear");
             }, 500);
 
-            if(globalQCounter === questions.length) {
+            if(globalQCounter === 2) {
                 $(".question").text("You've reached the end of the quiz");
                 var scoreJSON = {
                     userScore: userScores

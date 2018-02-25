@@ -9,6 +9,10 @@ body, html, .container {
     font-family: 'Roboto', sans-serif;
 }
 
+.wrap {
+    margin: 0 auto;
+}
+
 a {
     color: rgb(255, 202, 122);
 }
@@ -16,6 +20,11 @@ a {
 a:hover {
     color:rgb(229, 201, 157);
     text-decoration: none;
+}
+
+.content {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .container.mainContent {
@@ -29,6 +38,8 @@ a:hover {
                 0px 3px 0px #777, 
                 0px 2px 0px #888, 
                 0px 5px 8px rgb(163, 162, 162);
+    display: table;
+    min-width: 440px;
 }
 
 hr {
@@ -118,13 +129,16 @@ h1{
     left:0;
     right:0;
     z-index: 10;
+    display: table-cell;
     width: inherit;
-    height: 70%;
+    min-width: 440px;
+    height: 100%;
     margin: 0 auto;
     margin-bottom: 20px;
     border-radius: 10px;
     background: rgb(14, 10, 12);
     opacity: 0.9;
+    
 }
 
 .opened:before {
@@ -144,21 +158,20 @@ h1{
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
-    top: 111px;
-    left: 350px;
+    top: 0;
+    margin-top: 5%;
 }
 
 .showartistdiv {
-    position:absolute;
-    /* top: 50%; */
-    left: 50%;
+    position:relative;
+    margin: 0 auto;
     background: url("../images/bg.png");
+    min-width: 440px;
     width: 440px;
-    /* height: 252px;     */
     border: 1px solid rgb(255, 255, 255);
     border-radius: 10px;
     text-align: center;
-    padding: 1% 0;
+    margin-top: 15%;
     -webkit-transform: translate(0, -500%);
     -ms-transform: translate(0, -500%);
     transform: translate(0, 500%);
