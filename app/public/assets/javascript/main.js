@@ -77,7 +77,7 @@ $(document).ready(function () {
     $(".options").on("click", ".option", function() {
         userScores.push($(this).val());
 
-        if(globalQCounter < 2) {
+        if(globalQCounter < questions.length) {
             $(".question").toggleClass("disappear");
             $(".options").toggleClass("disappear");
             globalQCounter++;
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 $(".options").toggleClass("disappear");
             }, 500);
 
-            if(globalQCounter === 2) {
+            if(globalQCounter === questions.length) {
                 $(".question").text("You've reached the end of the quiz");
                 var scoreJSON = {
                     userScore: userScores
@@ -102,9 +102,6 @@ $(document).ready(function () {
                     getArtistData(data.name);
                 });
             }
-        }
-        else {
-            // TODO: display artist that closely matches
         }
     });
 });
