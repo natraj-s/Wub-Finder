@@ -73,6 +73,8 @@ $(document).ready(function () {
 
     $(".question").text(questions[globalQCounter]);
     $(".options").append(buttons[globalQCounter]);
+    $(".progress-bar-ongoing").width((globalQCounter + 1)/questions.length * 100 + "%");
+
 
     $(".options").on("click", ".option", function() {
         userScores.push($(this).val());
@@ -88,6 +90,7 @@ $(document).ready(function () {
                 $(".options").empty();
                 $(".options").append(buttons[globalQCounter]);
                 $(".options").toggleClass("disappear");
+                $(".progress-bar-ongoing").width((globalQCounter + 1)/questions.length * 100 + "%");
             }, 500);
 
             if(globalQCounter === questions.length) {
